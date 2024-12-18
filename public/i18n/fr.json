@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "connection": "Connexion",
+    "email": "Email",
+    "enter_email": "Entrez votre email",
+    "password": "Mot de passe",
+    "enter_password": "Entrez votre mot de passe",
+    "stay_connected": "Rester connecté",
+    "forgot_password": "Mot de passe oublié ?",
+    "connect": "Se connecter",
+    "reset_password": "Réinitialiser votre mot de passe",
+    "send_reset_password_email": "Envoyer l'email"
+  }
+}

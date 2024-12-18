@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "connection": "Connection",
+    "email": "Email",
+    "enter_email": "Enter your email address",
+    "password": "Password",
+    "enter_password": "Enter your password",
+    "stay_connected": "Stay connected",
+    "forgot_password": "Forgot your password?",
+    "connect": "Connect",
+    "reset_password": "Reset your password",
+    "send_reset_password_email": "Send password reset email"
+  }
+}
