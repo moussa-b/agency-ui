@@ -9,7 +9,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
   imports: [
     FormsModule,
     TranslatePipe,
@@ -20,11 +19,11 @@ import { RouterLink } from '@angular/router';
     RouterLink
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   rememberMe?: boolean;
   password?: string;
+
   onSubmit(form: any) {
     if (form.valid) {
       console.log('Form Data:', form.value);

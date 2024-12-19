@@ -3,18 +3,18 @@ import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 import { TranslatePipe } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-password-reset',
-  standalone: true,
   imports: [
     Button,
     FormsModule,
     InputText,
-    TranslatePipe
+    TranslatePipe,
+    RouterLink
   ],
   templateUrl: './password-reset.component.html',
-  styleUrl: './password-reset.component.scss'
 })
 export class PasswordResetComponent {
 

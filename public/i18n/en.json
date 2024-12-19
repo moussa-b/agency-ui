@@ -1,14 +1,38 @@
 {
   "auth": {
-    "connection": "Connection",
-    "email": "Email",
-    "enter_email": "Enter your email address",
-    "password": "Password",
-    "enter_password": "Enter your password",
-    "stay_connected": "Stay connected",
-    "forgot_password": "Forgot your password?",
     "connect": "Connect",
+    "enter_email": "Enter your email address",
+    "enter_password": "Enter your password",
+    "forgot_password": "Forgot your password?",
     "reset_password": "Reset your password",
-    "send_reset_password_email": "Send password reset email"
+    "send_reset_password_email": "Send password reset email",
+    "stay_connected": "Stay connected"
+  },
+  "users": {
+    "activated": "Activated",
+    "add_user": "Add a user",
+    "administrator": "Administrator",
+    "first_name": "First name",
+    "first_name_required": "First name is required",
+    "last_name": "Last name",
+    "last_name_required": "Name is required",
+    "manager": "Manager",
+    "not_activated": "Not activated",
+    "role": "Role",
+    "standard_user": "Standard user",
+    "status": "Status",
+    "user_list": "List of users"
+  },
+  "common": {
+    "back": "Back",
+    "connection": "Connection",
+    "current_page_report_template": "Showing {first} to {last} of {totalRecords} entries",
+    "email": "Email",
+    "email_required": "A valid email is required",
+    "password": "Password",
+    "search": "Search",
+    "success": "Success",
+    "success_message": "Operation successfully completed",
+    "validate": "Validate"
   }
 }

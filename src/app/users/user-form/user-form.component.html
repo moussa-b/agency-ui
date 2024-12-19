@@ -1,1 +1,60 @@
-<p>user-form works!</p>
+<div class="max-w-md mx-auto p-3 bg-white rounded-lg shadow-md w-80">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="lastName" class="block">{{ 'users.last_name' | translate }}</label>
+      <input class="mt-1 p-2 w-full"
+             formControlName="lastName"
+             pInputText
+             id="lastName"
+             [placeholder]="'users.last_name' | translate"
+             type="text">
+      <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="text-red-500 text-sm">
+        {{ 'users.last_name_required' | translate }}
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="firstName" class="block">{{ 'users.first_name' | translate }}</label>
+      <input class="mt-1 p-2 w-full"
+             formControlName="firstName"
+             pInputText
+             id="firstName"
+             [placeholder]="'users.first_name' | translate"
+             type="text">
+      <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="text-red-500 text-sm">
+        {{ 'users.first_name_required' | translate }}
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="email" class="block">{{ 'common.email' | translate }}</label>
+      <input class="mt-1 p-2 w-full"
+             formControlName="email"
+             pInputText
+             id="email"
+             [placeholder]="'common.email' | translate"
+             type="email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500 text-sm">
+        {{ 'common.email_required' | translate }}
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="role" class="block">{{ 'users.role' | translate }}</label>
+      <p-dropdown [options]="roleOptions"
+                  appendTo="body"
+                  class="w-full"
+                  formControlName="role"
+                  id="role" />
+    </div>
+
+    <div class="mt-6 flex">
+      <p-button [disabled]="userForm.invalid"
+                class="ml-auto"
+                type="submit">
+        {{ 'common.validate' | translate }}
+      </p-button>
+    </div>
+  </form>
+</div>
+<p-toast />

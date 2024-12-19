@@ -5,7 +5,7 @@ export const routes: Routes = [
   { path: 'password-reset', loadComponent: () => import('./auth/password-reset/password-reset.component').then(m => m.PasswordResetComponent) },
   {
     path: '',
-    loadComponent: () => import('./core/main/main.component').then(m => m.MainComponent),
+    loadComponent: () => import('./core/components/layout/layout.component').then(m => m.LayoutComponent),
     children : [
       { path: 'users', loadComponent: () => import('./users/user-list/user-list.component').then(m => m.UserListComponent) },
       { path: 'clients', loadComponent: () => import('./clients/client-list/client-list.component').then(m => m.ClientListComponent) },

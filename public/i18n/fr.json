@@ -1,14 +1,38 @@
 {
   "auth": {
-    "connection": "Connexion",
-    "email": "Email",
-    "enter_email": "Entrez votre email",
-    "password": "Mot de passe",
-    "enter_password": "Entrez votre mot de passe",
-    "stay_connected": "Rester connecté",
-    "forgot_password": "Mot de passe oublié ?",
     "connect": "Se connecter",
+    "enter_email": "Entrez votre email",
+    "enter_password": "Entrez votre mot de passe",
+    "forgot_password": "Mot de passe oublié ?",
     "reset_password": "Réinitialiser votre mot de passe",
-    "send_reset_password_email": "Envoyer l'email"
+    "send_reset_password_email": "Envoyer l'email",
+    "stay_connected": "Rester connecté"
+  },
+  "users": {
+    "activated": "Activé",
+    "add_user": "Ajouter un utilisateur",
+    "administrator": "Administrateur",
+    "first_name": "Prénom",
+    "first_name_required": "Le prénom est obligatoire",
+    "last_name": "Nom",
+    "last_name_required": "Le nom est obligatoire",
+    "manager": "Manager",
+    "not_activated": "Non activé",
+    "role": "Rôle",
+    "standard_user": "Utilisteur standard",
+    "status": "Statut",
+    "user_list": "Liste des utilisateurs"
+  },
+  "common": {
+    "back": "Retour",
+    "connection": "Connexion",
+    "current_page_report_template": "Affichage de {first} à {last} sur {totalRecords} éléments",
+    "email": "Email",
+    "email_required": "Un email valide est obligatoire",
+    "password": "Mot de passe",
+    "search": "Rechercher",
+    "success": "Succès",
+    "success_message": "Opération effectuée avec succès",
+    "validate": "Valider"
   }
 }
