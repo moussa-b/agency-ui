@@ -4,7 +4,10 @@
       <div class="flex flex-col items-center justify-between sm:flex-row">
         <h5 class="m-0">{{'users.user_list' | translate}}</h5>
         <div class="flex items-center">
-          <p-button [label]="'users.add_user' | translate" icon="pi pi-plus" class="mr-2" (onClick)="openNew()" />
+          <p-button (onClick)="openNew()"
+                    [label]="'users.add_user' | translate"
+                    class="mr-2 responsive-button"
+                    icon="pi pi-plus"/>
           <p-iconfield>
             <p-inputicon styleClass="pi pi-search" />
             <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" [placeholder]="('common.search' | translate)" />
@@ -14,7 +17,7 @@
     </ng-template>
     <p-table #dt
              [columns]="cols"
-             [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+             [globalFilterFields]="['lastName', 'firstName', 'email']"
              [paginator]="true"
              [rowHover]="true"
              [rows]="10"
@@ -47,7 +50,7 @@
           <td class="w-32">
             <ng-container *ngIf="user.id > 1">
               <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editUser(user)" />
-              <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteUser(user)" />
+              <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteUser(user.id, $event)" />
             </ng-container>
           </td>
         </tr>
@@ -56,5 +59,6 @@
   </p-card>
 </div>
 
-<p-confirmDialog [style]="{ width: '450px' }" />
+<p-confirmpopup />
 
+<p-toast />

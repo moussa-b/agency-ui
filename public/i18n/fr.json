@@ -8,6 +8,17 @@
     "send_reset_password_email": "Envoyer l'email",
     "stay_connected": "Rester connecté"
   },
+  "clients": {
+    "clients": "Clients"
+  },
+  "header": {
+    "change_language": "Changer de langue",
+    "french": "Français",
+    "english": "Anglais",
+    "profile": "Profil",
+    "my_account": "Mon compte",
+    "logout": "Déconnexion"
+  },
   "users": {
     "activated": "Activé",
     "add_user": "Ajouter un utilisateur",
@@ -21,7 +32,9 @@
     "role": "Rôle",
     "standard_user": "Utilisteur standard",
     "status": "Statut",
-    "user_list": "Liste des utilisateurs"
+    "user_list": "Liste des utilisateurs",
+    "delete_user_confirmation_message": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
+    "users": "Utilisateurs"
   },
   "common": {
     "back": "Retour",
@@ -33,6 +46,8 @@
     "search": "Rechercher",
     "success": "Succès",
     "success_message": "Opération effectuée avec succès",
-    "validate": "Valider"
+    "validate": "Valider",
+    "cancel": "Annuler",
+    "delete": "Supprimer"
   }
 }

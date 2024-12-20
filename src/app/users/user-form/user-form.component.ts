@@ -9,6 +9,7 @@ import { NgIf } from '@angular/common';
 import { Button } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { UsersService } from '../users.service';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-user-form',
@@ -33,14 +34,18 @@ export class UserFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private translate: TranslateService,
               private usersService: UsersService,
-              private messageService: MessageService,) {}
+              private messageService: MessageService,
+              private dialogRef: DynamicDialogRef,
+              private dialogConfig: DynamicDialogConfig) {}
 
   ngOnInit(): void {
+    const user: User | undefined = this.dialogConfig.data.user;
     this.userForm = this.fb.group({
-      lastName: ['', Validators.required],
-      firstName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      role: [UserRole.USER],
+      id: [user?.id],
+      lastName: [user?.lastName, Validators.required],
+      firstName: [user?.firstName, Validators.required],
+      email: [user?.email, [Validators.required, Validators.email]],
+      role: [user?.role || UserRole.USER],
     });
     this.roleOptions= [
       { label: this.translate.instant('users.administrator'), value: UserRole.ADMIN },
@@ -51,13 +56,16 @@ export class UserFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.userForm.valid) {
-      this.usersService.create(this.userForm.getRawValue()).subscribe((user: User) => {
+      let userFormValue = this.userForm.getRawValue();
+      const observable = userFormValue.id > 0 ? this.usersService.update(userFormValue.id, userFormValue) : this.usersService.create(userFormValue);
+      observable.subscribe((user: User) => {
         if (user && user.id! > 0) {
           this.messageService.add({
             severity: 'success',
-            summary: this.translate.instant('success'),
-            detail: this.translate.instant('success_message')
+            summary: this.translate.instant('common.success'),
+            detail: this.translate.instant('common.success_message')
           });
+          this.dialogRef.close(user);
         }
       });
     }

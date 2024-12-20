@@ -20,6 +20,7 @@ export const routes: Routes = [
     children : [
       { path: 'users', loadComponent: () => import('./users/user-list/user-list.component').then(m => m.UserListComponent) },
       { path: 'clients', loadComponent: () => import('./clients/client-list/client-list.component').then(m => m.ClientListComponent) },
+      { path: 'my-account', loadComponent: () => import('./users/my-account/my-account.component').then(m => m.MyAccountComponent) },
       { path: '**', loadComponent: () => import('./users/user-list/user-list.component').then(m => m.UserListComponent) },
     ]
   }

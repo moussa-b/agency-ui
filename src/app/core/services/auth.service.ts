@@ -38,6 +38,12 @@ export class AuthService {
       }));
   }
 
+  logout(): void {
+    this.jwtToken = undefined;
+    this.decodedToken = undefined;
+    this.storageService.remove('jwtToken');
+  }
+
   isAuthenticated(): boolean {
     return !!(this.jwtToken && this.jwtToken?.length > 0) && !this.isTokenExpired();
   }
