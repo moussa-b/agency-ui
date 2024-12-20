@@ -5,7 +5,8 @@ import { Password } from 'primeng/password';
 import { InputText } from 'primeng/inputtext';
 import { Checkbox } from 'primeng/checkbox';
 import { Button } from 'primeng/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +22,20 @@ import { RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  rememberMe?: boolean;
+  rememberMe = false;
   password?: string;
+  username?: string;
+
+  constructor(private authService: AuthService, private router: Router,) {
+  }
 
   onSubmit(form: any) {
     if (form.valid) {
-      console.log('Form Data:', form.value);
+      this.authService.login(this.username!, this.password!, this.rememberMe).subscribe((response: { access_token: string }) => {
+        if (response?.access_token && response.access_token?.length > 0) {
+          this.router.navigateByUrl('');
+        }
+      })
     }
   }
 }

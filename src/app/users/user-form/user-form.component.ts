@@ -24,7 +24,6 @@ import { UsersService } from '../users.service';
     Toast
   ],
   templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.scss',
   providers: [MessageService]
 })
 export class UserFormComponent implements OnInit {
@@ -32,9 +31,9 @@ export class UserFormComponent implements OnInit {
   roleOptions!: SelectItem<UserRole>[];
 
   constructor(private fb: FormBuilder,
-              private readonly translate: TranslateService,
-              private readonly usersService: UsersService,
-              private readonly messageService: MessageService,) {}
+              private translate: TranslateService,
+              private usersService: UsersService,
+              private messageService: MessageService,) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({

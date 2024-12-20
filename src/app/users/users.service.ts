@@ -10,7 +10,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 })
 export class UsersService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   findAll(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.API_URL}/api/users`);

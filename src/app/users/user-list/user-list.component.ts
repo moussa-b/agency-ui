@@ -35,16 +35,15 @@ interface Column {
     NgIf
   ],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss',
   providers: [ConfirmationService, UsersService, DialogService],
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
   cols!: Column[];
 
-  constructor(private readonly dialogService: DialogService,
-              private readonly usersService: UsersService,
-              private readonly translate: TranslateService,) {
+  constructor(private dialogService: DialogService,
+              private usersService: UsersService,
+              private translate: TranslateService,) {
   }
 
   ngOnInit(): void {
