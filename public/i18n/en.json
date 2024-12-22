@@ -5,11 +5,14 @@
     "enter_password": "Enter your password",
     "forgot_password": "Forgot your password?",
     "reset_password": "Reset your password",
+    "active_account": "Activate account",
     "send_reset_password_email": "Send password reset email",
     "stay_connected": "Stay connected",
     "username": "Username",
     "logout_confirmation_message": "You have been logged out",
-    "activation_confirmation_message": "Your account has been successfully activated"
+    "activation_confirmation_message": "Your account has been successfully activated",
+    "lost_password_confirmation_message": "An e-mail has been sent to reset your password",
+    "reset_password_confirmation_message": "Your password was successfully reset"
   },
   "clients": {
     "clients": "Clients"

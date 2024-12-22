@@ -42,6 +42,14 @@ export class AuthService {
     return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/activate`, {username, password, activationToken});
   }
 
+  resetPassword(username: string, password: string, resetPasswordToken: string): Observable<{status: boolean}> {
+    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/reset-password`, {username, password, resetPasswordToken});
+  }
+
+  forgotPassword(email: string): Observable<{status: boolean}> {
+    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/forgot-password`, {email});
+  }
+
   logout(): void {
     this.jwtToken = undefined;
     this.decodedToken = undefined;

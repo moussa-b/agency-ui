@@ -5,11 +5,14 @@
     "enter_password": "Entrez votre mot de passe",
     "forgot_password": "Mot de passe oublié ?",
     "reset_password": "Réinitialiser votre mot de passe",
+    "active_account": "Activer votre compte",
     "send_reset_password_email": "Envoyer l'email",
     "stay_connected": "Rester connecté",
     "username": "Identifiant",
     "logout_confirmation_message": "Vous avez bien été déconnecté",
-    "activation_confirmation_message": "Votre compte a bien été activé"
+    "activation_confirmation_message": "Votre compte a été activé avec succès",
+    "lost_password_confirmation_message": "Un e-mail a été envoyé pour réinitialiser votre mot de passe",
+    "reset_password_confirmation_message": "Votre mot de passe a été réinitialisé avec succès"
   },
   "clients": {
     "clients": "Clients"

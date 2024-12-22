@@ -19,6 +19,11 @@ export const routes: Routes = [
     canActivate: [alreadyConnectedGuard]
   },
   {
+    path: 'reset-password',
+    loadComponent: () => import('./auth/reset-password/reset-password.component').then(m => m.ResetPasswordComponent),
+    canActivate: [alreadyConnectedGuard]
+  },
+  {
     path: '',
     loadComponent: () => import('./core/components/layout/layout.component').then(m => m.LayoutComponent),
     canActivate: [authGuard],

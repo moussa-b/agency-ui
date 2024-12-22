@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
-import { TranslatePipe } from '@ngx-translate/core';
-import { RouterLink } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-password-reset',
@@ -17,10 +18,20 @@ import { RouterLink } from '@angular/router';
   templateUrl: './lost-password.component.html',
 })
 export class LostPasswordComponent {
+  email?: string;
+
+  constructor(private authService: AuthService,
+              private router: Router,
+              private translate: TranslateService) {
+  }
 
   onSubmit(form: any) {
     if (form.valid) {
-      console.log('Form Data:', form.value);
+      this.authService.forgotPassword(this.email!).subscribe((response: {status: boolean}) => {
+        if (response.status) {
+          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translate.instant('auth.lost_password_confirmation_message')}}});
+        }
+      });
     }
   }
 }
