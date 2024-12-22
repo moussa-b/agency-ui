@@ -75,6 +75,6 @@ export class HeaderComponent implements OnInit {
 
   private logout() {
     this.authService.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translateService.instant('auth.logout_confirmation_message')}}});
   }
 }

@@ -14,9 +14,9 @@ import { RouterLink } from '@angular/router';
     TranslatePipe,
     RouterLink
   ],
-  templateUrl: './password-reset.component.html',
+  templateUrl: './lost-password.component.html',
 })
-export class PasswordResetComponent {
+export class LostPasswordComponent {
 
   onSubmit(form: any) {
     if (form.valid) {

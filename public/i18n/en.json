@@ -6,7 +6,10 @@
     "forgot_password": "Forgot your password?",
     "reset_password": "Reset your password",
     "send_reset_password_email": "Send password reset email",
-    "stay_connected": "Stay connected"
+    "stay_connected": "Stay connected",
+    "username": "Username",
+    "logout_confirmation_message": "You have been logged out",
+    "activation_confirmation_message": "Your account has been successfully activated"
   },
   "clients": {
     "clients": "Clients"

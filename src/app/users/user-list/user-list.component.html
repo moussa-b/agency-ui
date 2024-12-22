@@ -34,7 +34,7 @@
           <th pSortableColumn="email">{{'common.email' | translate}} <p-sortIcon field="email" /></th>
           <th pSortableColumn="role">{{'users.role' | translate}} <p-sortIcon field="role" /></th>
           <th pSortableColumn="isActive">{{'users.status' | translate}} <p-sortIcon field="isActive" /></th>
-          <th class="w-32"></th>
+          <th *ngIf="isAdmin" class="w-32"></th>
         </tr>
       </ng-template>
       <ng-template #body let-user>
@@ -47,7 +47,7 @@
           <td>
             <p-tag [value]="user.isActive ? ('users.activated' | translate) : ('users.not_activated' | translate)" [severity]="user.isActive ? 'success' : 'danger'" />
           </td>
-          <td class="w-32">
+          <td *ngIf="isAdmin" class="w-32">
             <ng-container *ngIf="user.id > 1">
               <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editUser(user)" />
               <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteUser(user.id, $event)" />

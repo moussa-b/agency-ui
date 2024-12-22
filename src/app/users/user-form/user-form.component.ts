@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { InputText } from 'primeng/inputtext';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { User, UserRole } from '../entities/user.entity';
-import { MessageService, SelectItem } from 'primeng/api';
+import { SelectItem } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { NgIf } from '@angular/common';
 import { Button } from 'primeng/button';
-import { Toast } from 'primeng/toast';
 import { UsersService } from '../users.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Select } from 'primeng/select';
 
 @Component({
   selector: 'app-user-form',
@@ -22,10 +22,9 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
     DropdownModule,
     NgIf,
     Button,
-    Toast
+    Select
   ],
-  templateUrl: './user-form.component.html',
-  providers: [MessageService]
+  templateUrl: './user-form.component.html'
 })
 export class UserFormComponent implements OnInit {
   userForm!: FormGroup;
@@ -34,12 +33,11 @@ export class UserFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private translate: TranslateService,
               private usersService: UsersService,
-              private messageService: MessageService,
               private dialogRef: DynamicDialogRef,
               private dialogConfig: DynamicDialogConfig) {}
 
   ngOnInit(): void {
-    const user: User | undefined = this.dialogConfig.data.user;
+    const user: User | undefined = this.dialogConfig.data?.user;
     this.userForm = this.fb.group({
       id: [user?.id],
       lastName: [user?.lastName, Validators.required],
@@ -60,11 +58,6 @@ export class UserFormComponent implements OnInit {
       const observable = userFormValue.id > 0 ? this.usersService.update(userFormValue.id, userFormValue) : this.usersService.create(userFormValue);
       observable.subscribe((user: User) => {
         if (user && user.id! > 0) {
-          this.messageService.add({
-            severity: 'success',
-            summary: this.translate.instant('common.success'),
-            detail: this.translate.instant('common.success_message')
-          });
           this.dialogRef.close(user);
         }
       });

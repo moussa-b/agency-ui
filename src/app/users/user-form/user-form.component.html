@@ -41,11 +41,11 @@
 
     <div class="mb-4">
       <label for="role" class="block">{{ 'users.role' | translate }}</label>
-      <p-dropdown [options]="roleOptions"
-                  appendTo="body"
-                  class="w-full"
-                  formControlName="role"
-                  id="role" />
+      <p-select [options]="roleOptions"
+                appendTo="body"
+                class="w-full"
+                formControlName="role"
+                id="role"/>
     </div>
 
     <div class="mt-6 flex">
@@ -57,4 +57,3 @@
     </div>
   </form>
 </div>
-<p-toast />

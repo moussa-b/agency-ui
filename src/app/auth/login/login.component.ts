@@ -7,6 +7,8 @@ import { Checkbox } from 'primeng/checkbox';
 import { Button } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { Message } from 'primeng/message';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,9 @@ import { AuthService } from '../../core/services/auth.service';
     InputText,
     Checkbox,
     Button,
-    RouterLink
+    RouterLink,
+    Message,
+    NgIf
   ],
   templateUrl: './login.component.html',
 })
@@ -25,8 +29,13 @@ export class LoginComponent {
   rememberMe = false;
   password?: string;
   username?: string;
+  message?: {severity: string; message: string};
 
   constructor(private authService: AuthService, private router: Router,) {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.info) {
+      this.message = (navigation.extras.info as any)['message'];
+    }
   }
 
   onSubmit(form: any) {

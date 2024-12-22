@@ -38,6 +38,10 @@ export class AuthService {
       }));
   }
 
+  activate(username: string, password: string, activationToken: string): Observable<{status: boolean}> {
+    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/activate`, {username, password, activationToken});
+  }
+
   logout(): void {
     this.jwtToken = undefined;
     this.decodedToken = undefined;
@@ -62,15 +66,34 @@ export class AuthService {
     return this.decodedToken?.exp;
   }
 
+  getRole(): UserRole {
+    this.decodeToken();
+    if (this.decodedToken && this.decodedToken.role) {
+      if (this.decodedToken.role === UserRole.ADMIN) {
+        return UserRole.ADMIN;
+      } else if (this.decodedToken.role === UserRole.MANAGER) {
+        return UserRole.MANAGER;
+      }
+    }
+    return UserRole.USER;
+  }
+
+  get isAdmin() {
+    return UserRole.ADMIN === this.getRole();
+  }
+
+  get isManager() {
+    return UserRole.MANAGER === this.getRole();
+  }
+
   decodeToken(): void {
-    if (this.jwtToken) {
+    if (this.jwtToken && !this.decodedToken) {
       try {
         this.decodedToken = jwtDecode<DecodedToken>(this.jwtToken);
       } catch (error) {
         console.error('Error decoding token:', error);
       }
     }
-    return undefined;
   }
 
   getJwtToken(): string | undefined {

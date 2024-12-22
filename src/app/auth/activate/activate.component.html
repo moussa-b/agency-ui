@@ -4,23 +4,16 @@
       <h2 class="text-2xl font-bold">{{'common.connection' | translate}}</h2>
     </div>
 
-    <p-message *ngIf="!!message"
-               [closable]="true"
-               [life]="3000"
-               class="mb-4 block"
-               severity="success">{{message.message}}</p-message>
-
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
       <div class="mb-4">
-        <label for="email" class="block mb-1">{{'common.email' | translate}}</label>
-        <input [placeholder]="'auth.enter_email' | translate"
+        <label for="username" class="block mb-1">{{'auth.username' | translate}}</label>
+        <input [disabled]="true"
+               [ngModel]="username"
                class="w-full"
-               id="email"
-               name="email"
-               [(ngModel)]="username"
+               id="username"
+               name="username"
                pInputText
-               required
-               type="email"/>
+               required/>
       </div>
 
       <div class="mb-4">
@@ -35,22 +28,6 @@
                     required
                     styleClass="w-full"
         ></p-password>
-      </div>
-
-      <div class="mb-4 flex items-center justify-between">
-        <div class="flex items-center">
-          <p-checkbox [(ngModel)]="rememberMe"
-                      binary="true"
-                      class="mr-2 flex"
-                      id="rememberMe"
-                      name="rememberMe"
-          ></p-checkbox>
-          <label for="rememberMe">{{'auth.stay_connected' | translate}}</label>
-        </div>
-        <a class="text-blue-500 hover:underline text-sm"
-           routerLink="../password-lost">
-          {{'auth.forgot_password' | translate}}
-        </a>
       </div>
 
       <div class="flex justify-center">

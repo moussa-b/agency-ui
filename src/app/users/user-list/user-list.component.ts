@@ -15,6 +15,7 @@ import { NgIf } from '@angular/common';
 import { Toast } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputText } from 'primeng/inputtext';
+import { AuthService } from '../../core/services/auth.service';
 
 interface Column {
   field: string;
@@ -44,16 +45,19 @@ interface Column {
 export class UserListComponent implements OnInit {
   users: User[] = [];
   cols!: Column[];
+  isAdmin = false;
 
   constructor(private dialogService: DialogService,
               private confirmationService: ConfirmationService,
               private usersService: UsersService,
               private translate: TranslateService,
+              private authService: AuthService,
               private messageService: MessageService,) {
   }
 
   ngOnInit(): void {
     this.findAllUsers();
+    this.isAdmin = this.authService.isAdmin
   }
 
   private findAllUsers(): void {
@@ -70,6 +74,11 @@ export class UserListComponent implements OnInit {
     }).onClose.subscribe((user: User) => {
       if (user) {
         this.findAllUsers();
+        this.messageService.add({
+          severity: 'success',
+          summary: this.translate.instant('common.success'),
+          detail: this.translate.instant('common.success_message')
+        });
       }
     });
   }
@@ -83,6 +92,11 @@ export class UserListComponent implements OnInit {
     }).onClose.subscribe((user: User) => {
       if (user) {
         this.findAllUsers();
+        this.messageService.add({
+          severity: 'success',
+          summary: this.translate.instant('common.success'),
+          detail: this.translate.instant('common.success_message')
+        });
       }
     });
   }

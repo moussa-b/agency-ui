@@ -6,7 +6,10 @@
     "forgot_password": "Mot de passe oublié ?",
     "reset_password": "Réinitialiser votre mot de passe",
     "send_reset_password_email": "Envoyer l'email",
-    "stay_connected": "Rester connecté"
+    "stay_connected": "Rester connecté",
+    "username": "Identifiant",
+    "logout_confirmation_message": "Vous avez bien été déconnecté",
+    "activation_confirmation_message": "Votre compte a bien été activé"
   },
   "clients": {
     "clients": "Clients"
