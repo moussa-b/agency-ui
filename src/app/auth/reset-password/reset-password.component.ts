@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private translate: TranslateService,
+              private translateService: TranslateService,
               private route: ActivatedRoute) {
   }
 
@@ -39,7 +39,7 @@ export class ResetPasswordComponent implements OnInit {
     if (form.valid) {
       this.authService.resetPassword(this.username!, this.password!, this.resetPasswordToken!).subscribe((response: {status: boolean}) => {
         if (response.status) {
-          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translate.instant('auth.reset_password_confirmation_message')}}});
+          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translateService.instant('auth.reset_password_confirmation_message')}}});
         }
       });
     }

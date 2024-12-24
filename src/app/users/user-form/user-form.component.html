@@ -27,6 +27,13 @@
     </div>
 
     <div class="mb-4">
+      <label class="block">{{ 'common.gender' | translate }}</label>
+      <p-selectbutton [options]="sexOptions"
+                      formControlName="sex"
+                      id="sex"/>
+    </div>
+
+    <div class="mb-4">
       <label for="email" class="block">{{ 'common.email' | translate }}</label>
       <input class="mt-1 p-2 w-full"
              formControlName="email"

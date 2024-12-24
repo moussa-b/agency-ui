@@ -50,7 +50,7 @@ export class UserListComponent implements OnInit {
   constructor(private dialogService: DialogService,
               private confirmationService: ConfirmationService,
               private usersService: UsersService,
-              private translate: TranslateService,
+              private translateService: TranslateService,
               private authService: AuthService,
               private messageService: MessageService,) {
   }
@@ -68,7 +68,7 @@ export class UserListComponent implements OnInit {
 
   openNew(): void {
     this.dialogService.open(UserFormComponent, {
-      header: this.translate.instant('users.add_user'),
+      header: this.translateService.instant('users.add_user'),
       closable: true,
       modal: true,
     }).onClose.subscribe((user: User) => {
@@ -76,8 +76,8 @@ export class UserListComponent implements OnInit {
         this.findAllUsers();
         this.messageService.add({
           severity: 'success',
-          summary: this.translate.instant('common.success'),
-          detail: this.translate.instant('common.success_message')
+          summary: this.translateService.instant('common.success'),
+          detail: this.translateService.instant('common.success_message')
         });
       }
     });
@@ -86,7 +86,7 @@ export class UserListComponent implements OnInit {
   editUser(user: User) {
     this.dialogService.open(UserFormComponent, {
       data: {user: user},
-      header: this.translate.instant('users.add_user'),
+      header: this.translateService.instant('users.add_user'),
       closable: true,
       modal: true,
     }).onClose.subscribe((user: User) => {
@@ -94,8 +94,8 @@ export class UserListComponent implements OnInit {
         this.findAllUsers();
         this.messageService.add({
           severity: 'success',
-          summary: this.translate.instant('common.success'),
-          detail: this.translate.instant('common.success_message')
+          summary: this.translateService.instant('common.success'),
+          detail: this.translateService.instant('common.success_message')
         });
       }
     });
@@ -104,15 +104,15 @@ export class UserListComponent implements OnInit {
   deleteUser(userId: number, event: MouseEvent) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: this.translate.instant('users.delete_user_confirmation_message'),
+      message: this.translateService.instant('users.delete_user_confirmation_message'),
       icon: 'pi pi-info-circle',
       rejectButtonProps: {
-        label: this.translate.instant('common.cancel'),
+        label: this.translateService.instant('common.cancel'),
         severity: 'secondary',
         outlined: true
       },
       acceptButtonProps: {
-        label: this.translate.instant('common.delete'),
+        label: this.translateService.instant('common.delete'),
         severity: 'danger'
       },
       accept: () => {
@@ -120,8 +120,8 @@ export class UserListComponent implements OnInit {
           if (result) {
             this.messageService.add({
               severity: 'success',
-              summary: this.translate.instant('common.success'),
-              detail: this.translate.instant('common.success_message')
+              summary: this.translateService.instant('common.success'),
+              detail: this.translateService.instant('common.success_message')
             });
             this.users = this.users.filter((u: User) => u.id !== userId);
           }

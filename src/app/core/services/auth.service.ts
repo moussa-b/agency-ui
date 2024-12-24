@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { jwtDecode } from 'jwt-decode';
-import { UserRole } from '../../users/entities/user.entity';
+import { User, UserRole } from '../../users/entities/user.entity';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
+import { SaveUserDto } from '../../users/dto/save-user.dto';
 
 export interface DecodedToken {
   sub: number;
@@ -43,11 +44,23 @@ export class AuthService {
   }
 
   resetPassword(username: string, password: string, resetPasswordToken: string): Observable<{status: boolean}> {
-    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/reset-password`, {username, password, resetPasswordToken});
+    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/password/reset`, {username, password, resetPasswordToken});
   }
 
   forgotPassword(email: string): Observable<{status: boolean}> {
-    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/forgot-password`, {email});
+    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/password/forgot`, {email});
+  }
+
+  getProfile(): Observable<User> {
+    return this.http.get<User>(`${environment.API_URL}/api/auth/profile`);
+  }
+
+  updateProfile(updateClientDto: SaveUserDto): Observable<User> {
+    return this.http.post<User>(`${environment.API_URL}/api/auth/profile`, updateClientDto);
+  }
+
+  updateProfileSecurity(securityFormValue: any): Observable<{ status: boolean }> {
+    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/profile/security`, securityFormValue);
   }
 
   logout(): void {
@@ -86,11 +99,16 @@ export class AuthService {
     return UserRole.USER;
   }
 
-  get isAdmin() {
+  get isAdmin(): boolean {
     return UserRole.ADMIN === this.getRole();
   }
 
-  get isManager() {
+  get userId(): number {
+    this.decodeToken();
+    return this.decodedToken?.sub || 0;
+  }
+
+  get isManager(): boolean {
     return UserRole.MANAGER === this.getRole();
   }
 

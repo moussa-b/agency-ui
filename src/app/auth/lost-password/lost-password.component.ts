@@ -22,14 +22,14 @@ export class LostPasswordComponent {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private translate: TranslateService) {
+              private translateService: TranslateService) {
   }
 
   onSubmit(form: any) {
     if (form.valid) {
       this.authService.forgotPassword(this.email!).subscribe((response: {status: boolean}) => {
         if (response.status) {
-          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translate.instant('auth.lost_password_confirmation_message')}}});
+          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translateService.instant('auth.lost_password_confirmation_message')}}});
         }
       });
     }

@@ -6,6 +6,8 @@ import { Avatar } from 'primeng/avatar';
 import { Menu } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MyAccountComponent } from '../../../users/my-account/my-account.component';
 
 @Component({
   selector: 'app-header',
@@ -17,13 +19,15 @@ import { AuthService } from '../../services/auth.service';
     Menu
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  providers: [DialogService]
 })
 export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   menuItems: MenuItem[] = [];
 
   constructor(private authService: AuthService,
+              private dialogService: DialogService,
               private translateService: TranslateService,
               private router: Router,) {
   }
@@ -55,7 +59,7 @@ export class HeaderComponent implements OnInit {
           {
             label: this.translateService.instant('header.my_account'),
             icon: 'pi pi-user',
-            command: () => this.goToProfile()
+            command: () => this.editProfile()
           },
           {label: this.translateService.instant('header.logout'), icon: 'pi pi-sign-out', command: () => this.logout()}
         ]
@@ -69,8 +73,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  private goToProfile() {
-    this.router.navigateByUrl('/my-account');
+  private editProfile() {
+    this.dialogService.open(MyAccountComponent, {
+      header: this.translateService.instant('auth.edit_my_account'),
+      closable: true,
+      modal: true,
+    });
   }
 
   private logout() {

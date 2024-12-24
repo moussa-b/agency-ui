@@ -6,6 +6,7 @@ export class User {
   password?: string;
   firstName!: string;
   lastName!: string;
+  sex?: UserSex;
   role!: UserRole;
   isActive?: boolean;
   activationToken?: string;
@@ -19,4 +20,9 @@ export enum UserRole {
   ADMIN = "ADMIN",
   MANAGER = "MANAGER",
   USER = "USER"
+}
+
+export enum UserSex {
+  MALE = "M",
+  FEMALE = "F"
 }

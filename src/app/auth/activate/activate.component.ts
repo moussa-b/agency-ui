@@ -25,7 +25,7 @@ export class ActivateComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private translate: TranslateService,
+              private translateService: TranslateService,
               private route: ActivatedRoute) {
   }
 
@@ -39,7 +39,7 @@ export class ActivateComponent implements OnInit {
     if (form.valid) {
       this.authService.activate(this.username!, this.password!, this.activationToken!).subscribe((response: {status: boolean}) => {
         if (response.status) {
-          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translate.instant('auth.activation_confirmation_message')}}});
+          this.router.navigateByUrl('/login', {info: {message: {severity: 'info', message: this.translateService.instant('auth.activation_confirmation_message')}}});
         }
       });
     }

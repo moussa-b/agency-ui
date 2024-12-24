@@ -12,7 +12,24 @@
     "logout_confirmation_message": "You have been logged out",
     "activation_confirmation_message": "Your account has been successfully activated",
     "lost_password_confirmation_message": "An e-mail has been sent to reset your password",
-    "reset_password_confirmation_message": "Your password was successfully reset"
+    "reset_password_confirmation_message": "Your password was successfully reset",
+    "edit_my_account": "Edit my account",
+    "personal_information": "Personal information",
+    "reconnection_confirmation_message": "This action will require a new connection to your account. Are you sure you want to continue?"
+  },
+  "security": {
+    "enter_new_username": "Enter a new username",
+    "username_required": "Username is required (min 3 characters)",
+    "current_password": "Current password",
+    "current_password_required": "Current password is required",
+    "enter_current_password": "Enter your current password",
+    "new_password": "New password",
+    "enter_new_password": "Enter your new password",
+    "new_password_required": "New password required (min 6 characters)",
+    "new_password_confirmation": "Confirm new password",
+    "confirm_new_password": "Confirm new password",
+    "passwords_not_match": "Passwords do not match",
+    "account_updated_confirmation_message": "Your credentials have been updated. Please log in again."
   },
   "clients": {
     "clients": "Clients"
@@ -54,6 +71,11 @@
     "success_message": "Operation successfully completed",
     "validate": "Validate",
     "cancel": "Cancel",
-    "delete": "Delete"
+    "delete": "Delete",
+    "gender": "Gender",
+    "man": "Man",
+    "woman": "Woman",
+    "save": "Save",
+    "security": "Security"
   }
 }
