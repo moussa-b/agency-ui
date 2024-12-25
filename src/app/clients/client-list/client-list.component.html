@@ -4,7 +4,8 @@
       <div class="flex flex-col items-center justify-between sm:flex-row">
         <h5 class="m-0">{{'clients.client_list' | translate}}</h5>
         <div class="flex items-center">
-          <p-button (onClick)="openNew()"
+          <p-button *ngIf="isManagerOrAdmin"
+                    (onClick)="openNew()"
                     [label]="'clients.add_client' | translate"
                     class="mr-2 responsive-button"
                     icon="pi pi-plus"/>
@@ -32,7 +33,7 @@
           <th pSortableColumn="firstName">{{'common.first_name' | translate}} <p-sortIcon field="firstName" /></th>
           <th pSortableColumn="sex">{{'common.gender' | translate}} <p-sortIcon field="sex" /></th>
           <th pSortableColumn="email">{{'common.email' | translate}} <p-sortIcon field="email" /></th>
-          <th *ngIf="isManagerOrAdmin" class="w-32"></th>
+          <th *ngIf="isManagerOrAdmin" class="w-32">{{'common.actions' | translate}}</th>
         </tr>
       </ng-template>
       <ng-template #body let-client>
@@ -43,10 +44,8 @@
           <td>{{ client.sex === 'M' ? ('common.man' | translate) : (client.sex === 'F' ? ('common.woman' | translate) : '')}}</td>
           <td>{{ client.email }}</td>
           <td *ngIf="isManagerOrAdmin" class="w-32">
-            <ng-container *ngIf="client.id > 1">
-              <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editClient(client)" />
-              <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteClient(client.id, $event)" />
-            </ng-container>
+            <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editClient(client)" />
+            <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteClient(client.id, $event)" />
           </td>
         </tr>
       </ng-template>

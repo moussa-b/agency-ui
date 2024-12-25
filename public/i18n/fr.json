@@ -78,6 +78,9 @@
     "first_name": "Prénom",
     "last_name": "Nom",
     "first_name_required": "Le prénom est obligatoire",
-    "last_name_required": "Le nom est obligatoire"
+    "last_name_required": "Le nom est obligatoire",
+    "actions": "Actions",
+    "phoneNumber": "Numéro de téléphone",
+    "address": "Adresse"
   }
 }

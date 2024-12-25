@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4300",
+    "start:backend-online": "ng serve --port 4300 -c backend-online",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

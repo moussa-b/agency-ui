@@ -69,15 +69,17 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "proxyConfig": "proxy.js"
-          },
           "configurations": {
             "production": {
               "buildTarget": "agency-ui:build:production"
             },
             "development": {
-              "buildTarget": "agency-ui:build:development"
+              "buildTarget": "agency-ui:build:development",
+              "proxyConfig": "proxy.js"
+            },
+            "backend-online": {
+              "buildTarget": "agency-ui:build:development",
+              "proxyConfig": "proxy-backend-online.js"
             }
           },
           "defaultConfiguration": "development"
