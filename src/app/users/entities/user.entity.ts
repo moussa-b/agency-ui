@@ -1,3 +1,5 @@
+import { Sex } from '../../core/models/sex.enum';
+
 export class User {
   id?: number;
   uuid!: number;
@@ -6,7 +8,7 @@ export class User {
   password?: string;
   firstName!: string;
   lastName!: string;
-  sex?: UserSex;
+  sex?: Sex;
   role!: UserRole;
   isActive?: boolean;
   activationToken?: string;
@@ -20,9 +22,4 @@ export enum UserRole {
   ADMIN = "ADMIN",
   MANAGER = "MANAGER",
   USER = "USER"
-}
-
-export enum UserSex {
-  MALE = "M",
-  FEMALE = "F"
 }

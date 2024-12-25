@@ -32,7 +32,9 @@
     "account_updated_confirmation_message": "Your credentials have been updated. Please log in again."
   },
   "clients": {
-    "clients": "Clients"
+    "clients": "Clients",
+    "client_list": "List of clients",
+    "add_client": "Add a client"
   },
   "header": {
     "change_language": "Change language",
@@ -46,10 +48,6 @@
     "activated": "Activated",
     "add_user": "Add a user",
     "administrator": "Administrator",
-    "first_name": "First name",
-    "first_name_required": "First name is required",
-    "last_name": "Last name",
-    "last_name_required": "Name is required",
     "manager": "Manager",
     "not_activated": "Not activated",
     "role": "Role",
@@ -76,6 +74,10 @@
     "man": "Man",
     "woman": "Woman",
     "save": "Save",
-    "security": "Security"
+    "security": "Security",
+    "first_name": "First name",
+    "first_name_required": "First name is required",
+    "last_name": "Last name",
+    "last_name_required": "Name is required"
   }
 }

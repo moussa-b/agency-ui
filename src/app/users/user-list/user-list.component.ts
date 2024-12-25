@@ -17,11 +17,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputText } from 'primeng/inputtext';
 import { AuthService } from '../../core/services/auth.service';
 
-interface Column {
-  field: string;
-  header: string;
-}
-
 @Component({
   selector: 'app-user-list',
   imports: [
@@ -44,7 +39,6 @@ interface Column {
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
-  cols!: Column[];
   isAdmin = false;
 
   constructor(private dialogService: DialogService,

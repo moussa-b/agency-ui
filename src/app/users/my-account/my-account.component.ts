@@ -5,7 +5,7 @@ import { Button } from 'primeng/button';
 import { NgClass, NgIf } from '@angular/common';
 import { SelectButton } from 'primeng/selectbutton';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { User, UserSex } from '../entities/user.entity';
+import { User } from '../entities/user.entity';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { TabsModule } from 'primeng/tabs';
 import { AuthService } from '../../core/services/auth.service';
@@ -15,6 +15,7 @@ import { Password } from 'primeng/password';
 import { Router } from '@angular/router';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Sex } from '../../core/models/sex.enum';
 
 @Component({
   selector: 'app-my-account',
@@ -41,7 +42,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class MyAccountComponent implements OnInit {
   userForm!: FormGroup;
   securityForm!: FormGroup;
-  sexOptions!: SelectItem<UserSex>[];
+  sexOptions!: SelectItem<Sex>[];
   isLoading = true;
 
   constructor(private fb: FormBuilder,
@@ -69,8 +70,8 @@ export class MyAccountComponent implements OnInit {
       this.isLoading = false;
     });
     this.sexOptions= [
-      { label: this.translateService.instant('common.man'), value: UserSex.MALE },
-      { label: this.translateService.instant('common.woman'), value: UserSex.FEMALE },
+      { label: this.translateService.instant('common.man'), value: Sex.MALE },
+      { label: this.translateService.instant('common.woman'), value: Sex.FEMALE },
     ];
   }
 

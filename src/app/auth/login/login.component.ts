@@ -42,7 +42,7 @@ export class LoginComponent {
     if (form.valid) {
       this.authService.login(this.username!, this.password!, this.rememberMe).subscribe((response: { access_token: string }) => {
         if (response?.access_token && response.access_token?.length > 0) {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/users');
         }
       })
     }

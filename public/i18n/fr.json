@@ -32,7 +32,9 @@
     "account_updated_confirmation_message": "Vos identifiants ont bien été mis à jour. Veuillez vous reconnecter."
   },
   "clients": {
-    "clients": "Clients"
+    "clients": "Clients",
+    "client_list": "Liste des clients",
+    "add_client": "Ajouter un client"
   },
   "header": {
     "change_language": "Changer de langue",
@@ -46,10 +48,6 @@
     "activated": "Activé",
     "add_user": "Ajouter un utilisateur",
     "administrator": "Administrateur",
-    "first_name": "Prénom",
-    "first_name_required": "Le prénom est obligatoire",
-    "last_name": "Nom",
-    "last_name_required": "Le nom est obligatoire",
     "manager": "Manager",
     "not_activated": "Non activé",
     "role": "Rôle",
@@ -76,6 +74,10 @@
     "man": "Homme",
     "woman": "Femme",
     "save": "Sauvegarder",
-    "security": "Sécurité"
+    "security": "Sécurité",
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "first_name_required": "Le prénom est obligatoire",
+    "last_name_required": "Le nom est obligatoire"
   }
 }
