@@ -14,6 +14,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { Client } from '../entities/client.entity';
 import { ClientsService } from '../clients.service';
 import { ClientFormComponent } from '../client-form/client-form.component';
+import { ConfirmPopup } from 'primeng/confirmpopup';
 
 @Component({
   selector: 'app-client-list',
@@ -27,7 +28,8 @@ import { ClientFormComponent } from '../client-form/client-form.component';
     PrimeTemplate,
     TableModule,
     Toast,
-    TranslatePipe
+    TranslatePipe,
+    ConfirmPopup,
   ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss',
