@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
-import { ConfirmPopup } from 'primeng/confirmpopup';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { InputText } from 'primeng/inputtext';
 import { NgIf } from '@angular/common';
 import { ConfirmationService, MessageService, PrimeTemplate } from 'primeng/api';
 import { TableModule } from 'primeng/table';
-import { Tag } from 'primeng/tag';
 import { Toast } from 'primeng/toast';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -22,7 +20,6 @@ import { ClientFormComponent } from '../client-form/client-form.component';
   imports: [
     Button,
     Card,
-    ConfirmPopup,
     IconField,
     InputIcon,
     InputText,
