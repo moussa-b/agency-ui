@@ -15,7 +15,8 @@
     "reset_password_confirmation_message": "Votre mot de passe a été réinitialisé avec succès",
     "edit_my_account": "Modifier mon profil",
     "personal_information": "Informations personnelles",
-    "reconnection_confirmation_message": "Cette action nécessitera une nouvelle connexion à votre compte. Êtes-vous sûr de vouloir continuer ?"
+    "reconnection_confirmation_message": "Cette action nécessitera une nouvelle connexion à votre compte. Êtes-vous sûr de vouloir continuer ?",
+    "login_invalid_error_message": "Identifiant ou mot de passe invalide"
   },
   "security": {
     "enter_new_username": "Saisir un nouvel identifiant",
@@ -81,6 +82,7 @@
     "last_name_required": "Le nom est obligatoire",
     "actions": "Actions",
     "phoneNumber": "Numéro de téléphone",
-    "address": "Adresse"
+    "address": "Adresse",
+    "error": "Erreur"
   }
 }

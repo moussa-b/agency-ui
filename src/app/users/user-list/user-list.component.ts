@@ -5,16 +5,16 @@ import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { Tag } from 'primeng/tag';
 import { User } from '../entities/user.entity';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { UsersService } from '../users.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { Card } from 'primeng/card';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { Toast } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputText } from 'primeng/inputtext';
 import { AuthService } from '../../core/services/auth.service';
+import { ToasterService } from '../../core/services/toaster.service';
 
 @Component({
   selector: 'app-user-list',
@@ -27,12 +27,11 @@ import { AuthService } from '../../core/services/auth.service';
     Tag,
     Card,
     TranslatePipe,
-    Toast,
     InputText
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss',
-  providers: [ConfirmationService, UsersService, DialogService, MessageService],
+  providers: [ConfirmationService, UsersService, DialogService],
   encapsulation: ViewEncapsulation.None
 })
 export class UserListComponent implements OnInit {
@@ -44,7 +43,7 @@ export class UserListComponent implements OnInit {
               private usersService: UsersService,
               private translateService: TranslateService,
               private authService: AuthService,
-              private messageService: MessageService,) {
+              private toasterService: ToasterService,) {
   }
 
   ngOnInit(): void {
@@ -66,7 +65,7 @@ export class UserListComponent implements OnInit {
     }).onClose.subscribe((user: User) => {
       if (user) {
         this.findAllUsers();
-        this.messageService.add({
+        this.toasterService.emitValue({
           severity: 'success',
           summary: this.translateService.instant('common.success'),
           detail: this.translateService.instant('common.success_message')
@@ -84,7 +83,7 @@ export class UserListComponent implements OnInit {
     }).onClose.subscribe((user: User) => {
       if (user) {
         this.findAllUsers();
-        this.messageService.add({
+        this.toasterService.emitValue({
           severity: 'success',
           summary: this.translateService.instant('common.success'),
           detail: this.translateService.instant('common.success_message')
@@ -110,7 +109,7 @@ export class UserListComponent implements OnInit {
       accept: () => {
         this.usersService.remove(userId).subscribe((result: boolean) => {
           if (result) {
-            this.messageService.add({
+            this.toasterService.emitValue({
               severity: 'success',
               summary: this.translateService.instant('common.success'),
               detail: this.translateService.instant('common.success_message')

@@ -15,7 +15,8 @@
     "reset_password_confirmation_message": "Your password was successfully reset",
     "edit_my_account": "Edit my account",
     "personal_information": "Personal information",
-    "reconnection_confirmation_message": "This action will require a new connection to your account. Are you sure you want to continue?"
+    "reconnection_confirmation_message": "This action will require a new connection to your account. Are you sure you want to continue?",
+    "login_invalid_error_message": "Invalid login or password"
   },
   "security": {
     "enter_new_username": "Enter a new username",
@@ -81,6 +82,7 @@
     "last_name_required": "Name is required",
     "actions": "Actions",
     "phoneNumber": "Phone number",
-    "address": "Address"
+    "address": "Address",
+    "error": "Error"
   }
 }

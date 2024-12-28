@@ -6,16 +6,16 @@ import { NgClass } from '@angular/common';
 import { SelectButton } from 'primeng/selectbutton';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { User } from '../entities/user.entity';
-import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
+import { ConfirmationService, SelectItem } from 'primeng/api';
 import { TabsModule } from 'primeng/tabs';
 import { AuthService } from '../../core/services/auth.service';
 import { ProgressSpinner } from 'primeng/progressspinner';
-import { Toast } from 'primeng/toast';
 import { Password } from 'primeng/password';
 import { Router } from '@angular/router';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Sex } from '../../core/models/sex.enum';
+import { ToasterService } from '../../core/services/toaster.service';
 
 @Component({
   selector: 'app-my-account',
@@ -30,12 +30,11 @@ import { Sex } from '../../core/models/sex.enum';
     TabsModule,
     ProgressSpinner,
     NgClass,
-    Toast,
     Password
   ],
   templateUrl: './my-account.component.html',
   styleUrl: './my-account.component.scss',
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService],
   encapsulation: ViewEncapsulation.None
 })
 export class MyAccountComponent implements OnInit {
@@ -47,9 +46,9 @@ export class MyAccountComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private confirmationService: ConfirmationService,
               private authService: AuthService,
+              private toasterService: ToasterService,
               private router: Router,
               private dialogRef: DynamicDialogRef,
-              private messageService: MessageService,
               private translateService: TranslateService) {}
 
   ngOnInit(): void {
@@ -85,7 +84,7 @@ export class MyAccountComponent implements OnInit {
       let userFormValue = this.userForm.getRawValue();
       this.authService.updateProfile(userFormValue).subscribe((user: User) => {
         if (user && user.id! > 0) {
-          this.messageService.add({
+          this.toasterService.emitValue({
             severity: 'success',
             summary: this.translateService.instant('common.success'),
             detail: this.translateService.instant('common.success_message')

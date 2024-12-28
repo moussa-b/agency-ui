@@ -5,10 +5,12 @@
     </div>
 
     @if (!!message) {
-      <p-message [closable]="true"
+      <p-message (onClose)="onCloseMessage()"
+                 [closable]="true"
                  [life]="3000"
+                 variant="outlined"
                  class="mb-4 block"
-                 severity="success">{{message.message}}</p-message>
+                 [severity]="message.severity">{{message.message}}</p-message>
     }
 
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">

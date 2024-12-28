@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { jwtDecode } from 'jwt-decode';
 import { User, UserRole } from '../../users/entities/user.entity';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { SaveUserDto } from '../../users/dto/save-user.dto';
+import { SkipErrorDetection } from '../interceptors/error.interceptor';
 
 export interface DecodedToken {
   sub: number;
@@ -28,7 +29,10 @@ export class AuthService {
   }
 
   login(username: string, password: string, rememberMe: boolean): Observable<{ access_token: string }> {
-    return this.http.post<{ access_token: string }>(`${environment.API_URL}/api/auth/login`, {username, password})
+    return this.http.post<{ access_token: string }>(
+      `${environment.API_URL}/api/auth/login`,
+      {username, password},
+      {context: new HttpContext().set(SkipErrorDetection, true)})
       .pipe(map((response: { access_token: string }) => {
         if (rememberMe) {
           this.storageService.setStorage(localStorage);

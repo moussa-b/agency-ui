@@ -4,9 +4,8 @@ import { Card } from 'primeng/card';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { InputText } from 'primeng/inputtext';
-import { ConfirmationService, MessageService, PrimeTemplate } from 'primeng/api';
+import { ConfirmationService, PrimeTemplate } from 'primeng/api';
 import { TableModule } from 'primeng/table';
-import { Toast } from 'primeng/toast';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AuthService } from '../../core/services/auth.service';
@@ -14,6 +13,7 @@ import { Client } from '../entities/client.entity';
 import { ClientsService } from '../clients.service';
 import { ClientFormComponent } from '../client-form/client-form.component';
 import { ConfirmPopup } from 'primeng/confirmpopup';
+import { ToasterService } from '../../core/services/toaster.service';
 
 @Component({
   selector: 'app-client-list',
@@ -25,13 +25,12 @@ import { ConfirmPopup } from 'primeng/confirmpopup';
     InputText,
     PrimeTemplate,
     TableModule,
-    Toast,
     TranslatePipe,
     ConfirmPopup,
   ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss',
-  providers: [DialogService, ConfirmationService, MessageService]
+  providers: [DialogService, ConfirmationService]
 })
 export class ClientListComponent implements OnInit {
   clients: Client[] = [];
@@ -42,7 +41,7 @@ export class ClientListComponent implements OnInit {
               private clientsService: ClientsService,
               private translateService: TranslateService,
               private authService: AuthService,
-              private messageService: MessageService,) {
+              private toasterService: ToasterService,) {
   }
 
   ngOnInit(): void {
@@ -64,7 +63,7 @@ export class ClientListComponent implements OnInit {
     }).onClose.subscribe((client: Client) => {
       if (client) {
         this.findAllClients();
-        this.messageService.add({
+        this.toasterService.emitValue({
           severity: 'success',
           summary: this.translateService.instant('common.success'),
           detail: this.translateService.instant('common.success_message')
@@ -82,7 +81,7 @@ export class ClientListComponent implements OnInit {
     }).onClose.subscribe((client: Client) => {
       if (client) {
         this.findAllClients();
-        this.messageService.add({
+        this.toasterService.emitValue({
           severity: 'success',
           summary: this.translateService.instant('common.success'),
           detail: this.translateService.instant('common.success_message')
@@ -108,7 +107,7 @@ export class ClientListComponent implements OnInit {
       accept: () => {
         this.clientsService.remove(clientId).subscribe((result: boolean) => {
           if (result) {
-            this.messageService.add({
+            this.toasterService.emitValue({
               severity: 'success',
               summary: this.translateService.instant('common.success'),
               detail: this.translateService.instant('common.success_message')

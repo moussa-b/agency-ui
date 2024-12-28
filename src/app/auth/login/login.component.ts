@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Password } from 'primeng/password';
 import { InputText } from 'primeng/inputtext';
 import { Checkbox } from 'primeng/checkbox';
@@ -8,6 +8,7 @@ import { Button } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Message } from 'primeng/message';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,7 @@ export class LoginComponent {
   username?: string;
   message?: {severity: string; message: string};
 
-  constructor(private authService: AuthService, private router: Router,) {
+  constructor(private authService: AuthService, private router: Router, private translateService: TranslateService,) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.info) {
       this.message = (navigation.extras.info as any)['message'];
@@ -38,11 +39,20 @@ export class LoginComponent {
 
   onSubmit(form: any) {
     if (form.valid) {
-      this.authService.login(this.username!, this.password!, this.rememberMe).subscribe((response: { access_token: string }) => {
-        if (response?.access_token && response.access_token?.length > 0) {
-          this.router.navigateByUrl('/users');
+      this.authService.login(this.username!, this.password!, this.rememberMe).subscribe({
+        next: (response: { access_token: string }) => {
+          if (response?.access_token && response.access_token?.length > 0) {
+            this.router.navigateByUrl('/users');
+          }
+        },
+        error: (error: HttpErrorResponse) => {
+          this.message = {severity: 'error', message: this.translateService.instant('auth.login_invalid_error_message')}
         }
-      })
+      });
     }
+  }
+
+  onCloseMessage() {
+    this.message = undefined;
   }
 }

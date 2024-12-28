@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { definePreset } from '@primeng/themes';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -43,7 +44,7 @@ export const appConfig: ApplicationConfig = {
         preset: customThemePreset
       }
     }),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
