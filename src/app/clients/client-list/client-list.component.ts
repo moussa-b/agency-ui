@@ -4,7 +4,6 @@ import { Card } from 'primeng/card';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { InputText } from 'primeng/inputtext';
-import { NgIf } from '@angular/common';
 import { ConfirmationService, MessageService, PrimeTemplate } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { Toast } from 'primeng/toast';
@@ -24,7 +23,6 @@ import { ConfirmPopup } from 'primeng/confirmpopup';
     IconField,
     InputIcon,
     InputText,
-    NgIf,
     PrimeTemplate,
     TableModule,
     Toast,

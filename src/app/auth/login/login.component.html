@@ -4,11 +4,12 @@
       <h2 class="text-2xl font-bold">{{'common.connection' | translate}}</h2>
     </div>
 
-    <p-message *ngIf="!!message"
-               [closable]="true"
-               [life]="3000"
-               class="mb-4 block"
-               severity="success">{{message.message}}</p-message>
+    @if (!!message) {
+      <p-message [closable]="true"
+                 [life]="3000"
+                 class="mb-4 block"
+                 severity="success">{{message.message}}</p-message>
+    }
 
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
       <div class="mb-4">

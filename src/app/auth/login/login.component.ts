@@ -8,7 +8,6 @@ import { Button } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Message } from 'primeng/message';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +19,7 @@ import { NgIf } from '@angular/common';
     Checkbox,
     Button,
     RouterLink,
-    Message,
-    NgIf
+    Message
   ],
   templateUrl: './login.component.html',
 })

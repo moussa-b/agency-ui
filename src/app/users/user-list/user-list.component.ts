@@ -11,7 +11,6 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { Card } from 'primeng/card';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { NgIf } from '@angular/common';
 import { Toast } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputText } from 'primeng/inputtext';
@@ -28,7 +27,6 @@ import { AuthService } from '../../core/services/auth.service';
     Tag,
     Card,
     TranslatePipe,
-    NgIf,
     Toast,
     InputText
   ],

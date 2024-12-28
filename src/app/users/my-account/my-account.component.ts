@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { SelectButton } from 'primeng/selectbutton';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { User } from '../entities/user.entity';
@@ -24,7 +24,6 @@ import { Sex } from '../../core/models/sex.enum';
     ConfirmPopupModule,
     InputText,
     Button,
-    NgIf,
     ReactiveFormsModule,
     SelectButton,
     TranslatePipe,

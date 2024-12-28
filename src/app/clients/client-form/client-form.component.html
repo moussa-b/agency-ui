@@ -8,9 +8,9 @@
              id="lastName"
              [placeholder]="'common.last_name' | translate"
              type="text">
-      <div *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched" class="text-red-500 text-sm">
-        {{ 'common.last_name_required' | translate }}
-      </div>
+      @if (clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched) {
+        <div class="text-red-500 text-sm">{{ 'common.last_name_required' | translate }}</div>
+      }
     </div>
 
     <div class="mb-4">
@@ -21,9 +21,9 @@
              id="firstName"
              [placeholder]="'common.first_name' | translate"
              type="text">
-      <div *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched" class="text-red-500 text-sm">
-        {{ 'common.first_name_required' | translate }}
-      </div>
+      @if (clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched) {
+        <div class="text-red-500 text-sm">{{ 'common.first_name_required' | translate }}</div>
+      }
     </div>
 
     <div class="mb-4">
@@ -41,9 +41,9 @@
              id="email"
              [placeholder]="'common.email' | translate"
              type="email">
-      <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched" class="text-red-500 text-sm">
-        {{ 'common.email_required' | translate }}
-      </div>
+      @if (clientForm.get('email')?.invalid && clientForm.get('email')?.touched) {
+        <div class="text-red-500 text-sm">{{ 'common.email_required' | translate }}</div>
+      }
     </div>
 
     <div class="mb-4">

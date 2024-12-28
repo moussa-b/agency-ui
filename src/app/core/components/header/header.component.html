@@ -22,13 +22,15 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div *ngIf="isMenuOpen" class="md:hidden bg-blue-700 text-white flex flex-col space-y-2 p-4">
-    <a routerLink="/users" class="hover:text-blue-300">{{'users.users' | translate}}</a>
-    <a routerLink="/clients" class="hover:text-blue-300">{{'clients.clients' | translate}}</a>
-    <p-avatar (click)="menu.toggle($event)"
-              icon="pi pi-user"
-              shape="circle"
-              styleClass="cursor-pointer"></p-avatar>
-    <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
-  </div>
+  @if (isMenuOpen) {
+    <div class="md:hidden bg-blue-700 text-white flex flex-col space-y-2 p-4">
+      <a routerLink="/users" class="hover:text-blue-300">{{'users.users' | translate}}</a>
+      <a routerLink="/clients" class="hover:text-blue-300">{{'clients.clients' | translate}}</a>
+      <p-avatar (click)="menu.toggle($event)"
+                icon="pi pi-user"
+                shape="circle"
+                styleClass="cursor-pointer"></p-avatar>
+      <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+    </div>
+  }
 </header>

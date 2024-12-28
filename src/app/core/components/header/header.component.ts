@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Router, RouterLink } from '@angular/router';
 import { Avatar } from 'primeng/avatar';
@@ -12,7 +11,6 @@ import { MyAccountComponent } from '../../../users/my-account/my-account.compone
 @Component({
   selector: 'app-header',
   imports: [
-    NgIf,
     TranslatePipe,
     RouterLink,
     Avatar,

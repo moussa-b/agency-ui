@@ -5,7 +5,6 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { User, UserRole } from '../entities/user.entity';
 import { SelectItem } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
-import { NgIf } from '@angular/common';
 import { Button } from 'primeng/button';
 import { UsersService } from '../users.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -22,7 +21,6 @@ import { Sex } from '../../core/models/sex.enum';
     TranslatePipe,
     ReactiveFormsModule,
     DropdownModule,
-    NgIf,
     Button,
     Select,
     SelectButton

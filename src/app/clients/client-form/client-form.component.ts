@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Button } from 'primeng/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
-import { NgIf } from '@angular/common';
 import { SelectButton } from 'primeng/selectbutton';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { SelectItem } from 'primeng/api';
@@ -19,7 +18,6 @@ import { Textarea } from 'primeng/textarea';
     Button,
     FormsModule,
     InputText,
-    NgIf,
     ReactiveFormsModule,
     SelectButton,
     TranslatePipe,
