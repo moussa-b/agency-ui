@@ -9,6 +9,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Message } from 'primeng/message';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AccessToken } from '../../core/models/access-token.model';
 
 @Component({
   selector: 'app-login',
@@ -40,8 +41,8 @@ export class LoginComponent {
   onSubmit(form: any) {
     if (form.valid) {
       this.authService.login(this.username!, this.password!, this.rememberMe).subscribe({
-        next: (response: { access_token: string }) => {
-          if (response?.access_token && response.access_token?.length > 0) {
+        next: (response: AccessToken) => {
+          if (response?.accessToken && response.accessToken?.length > 0) {
             this.router.navigateByUrl('/users');
           }
         },

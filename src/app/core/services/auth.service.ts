@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { SaveUserDto } from '../../users/dto/save-user.dto';
 import { SkipErrorDetection } from '../interceptors/error.interceptor';
+import { AccessToken } from '../models/access-token.model';
 
 export interface DecodedToken {
   sub: number;
@@ -28,16 +29,16 @@ export class AuthService {
     this.jwtToken = this.storageService.get('jwtToken') ? this.storageService.get('jwtToken')! : undefined;
   }
 
-  login(username: string, password: string, rememberMe: boolean): Observable<{ access_token: string }> {
-    return this.http.post<{ access_token: string }>(
+  login(username: string, password: string, rememberMe: boolean): Observable<AccessToken> {
+    return this.http.post<AccessToken>(
       `${environment.API_URL}/api/auth/login`,
       {username, password},
       {context: new HttpContext().set(SkipErrorDetection, true)})
-      .pipe(map((response: { access_token: string }) => {
+      .pipe(map((response: AccessToken) => {
         if (rememberMe) {
           this.storageService.setStorage(localStorage);
         }
-        this.jwtToken = response.access_token;
+        this.jwtToken = response.accessToken;
         this.storageService.set('jwtToken', this.jwtToken);
         return response;
       }));
@@ -60,11 +61,11 @@ export class AuthService {
   }
 
   updateProfile(updateClientDto: SaveUserDto): Observable<User> {
-    return this.http.post<User>(`${environment.API_URL}/api/auth/profile`, updateClientDto);
+    return this.http.patch<User>(`${environment.API_URL}/api/auth/profile`, updateClientDto);
   }
 
   updateProfileSecurity(securityFormValue: any): Observable<{ status: boolean }> {
-    return this.http.post<{status: boolean}>(`${environment.API_URL}/api/auth/profile/security`, securityFormValue);
+    return this.http.patch<{status: boolean}>(`${environment.API_URL}/api/auth/profile/security`, securityFormValue);
   }
 
   logout(): void {
