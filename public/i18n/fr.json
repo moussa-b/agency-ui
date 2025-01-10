@@ -84,5 +84,8 @@
     "phoneNumber": "Numéro de téléphone",
     "address": "Adresse",
     "error": "Erreur"
+  },
+  "calendar": {
+    "calendar": "Agenda"
   }
 }

@@ -30,6 +30,7 @@ export const routes: Routes = [
     children : [
       { path: 'users', loadComponent: () => import('./users/user-list/user-list.component').then(m => m.UserListComponent) },
       { path: 'clients', loadComponent: () => import('./clients/client-list/client-list.component').then(m => m.ClientListComponent) },
+      { path: 'calendar', loadComponent: () => import('./calendar/calendar/calendar.component').then(m => m.CalendarComponent) },
       { path: '**', loadComponent: () => import('./users/user-list/user-list.component').then(m => m.UserListComponent) },
     ]
   }
