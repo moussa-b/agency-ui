@@ -1,0 +1,69 @@
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <div class="mb-4">
+    <label for="title" class="block text-lg">Title</label>
+    <input
+      class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+      formControlName="title"
+      id="title"
+      type="text"
+      placeholder="Enter event title">
+    @if (eventForm.get('title')?.invalid && eventForm.get('title')?.touched) {
+      <div class="text-red-500 text-sm">
+        Title is required.
+      </div>
+    }
+  </div>
+
+  <div class="mb-4">
+    <label for="description" class="block text-lg">Description</label>
+    @if (Editor && config) {
+      <ckeditor [config]="config"
+                [editor]="Editor"
+                formControlName="description"
+                id="description"></ckeditor>
+    }
+    @if (eventForm.get('description')?.invalid && eventForm.get('description')?.touched) {
+      <div class="text-red-500 text-sm">
+        Description is required.
+      </div>
+    }
+  </div>
+
+  <div class="mb-4">
+    <label for="startDate" class="block text-lg">Start Date</label>
+    <p-datepicker [showTime]="true"
+                  formControlName="startDate"
+                  hourFormat="24"
+                  inputId="startDate"
+                  placeholder="Select start date">
+    </p-datepicker>
+    @if (eventForm.get('startDate')?.invalid && eventForm.get('startDate')?.touched) {
+      <div class="text-red-500 text-sm">
+        Start Date is required.
+      </div>
+    }
+  </div>
+
+  <div class="mb-4">
+    <label for="endDate" class="block text-lg">End Date</label>
+    <p-datepicker [showTime]="true"
+                  formControlName="endDate"
+                  hourFormat="24"
+                  inputId="endDate"
+                  placeholder="Select end date">
+    </p-datepicker>
+    @if (eventForm.get('endDate')?.invalid && eventForm.get('endDate')?.touched) {
+      <div class="text-red-500 text-sm">
+        End Date is required.
+      </div>
+    }
+  </div>
+
+  <div class="mt-6 flex">
+    <button [disabled]="eventForm.invalid"
+            class="ml-auto px-6 py-2 bg-blue-600 text-white rounded-md"
+            type="submit">
+      Submit
+    </button>
+  </div>
+</form>

@@ -11,7 +11,7 @@ import { SaveCalendarEventDto } from './dto/save-calendar-event.dto';
 export class CalendarService {
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<CalendarEvent[]> {
+  findAll(startDate: Date, endDate: Date): Observable<CalendarEvent[]> {
     return this.http.get<CalendarEvent[]>(`${environment.API_URL}/api/calendar-events`);
   }
 
