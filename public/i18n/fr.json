@@ -35,7 +35,8 @@
   "clients": {
     "clients": "Clients",
     "client_list": "Liste des clients",
-    "add_client": "Ajouter un client"
+    "add_client": "Ajouter un client",
+    "edit_client": "Modifier ce client"
   },
   "header": {
     "change_language": "Changer de langue",
@@ -48,6 +49,7 @@
   "users": {
     "activated": "Activé",
     "add_user": "Ajouter un utilisateur",
+    "edit_user": "Modifier cet utilisateur",
     "administrator": "Administrateur",
     "manager": "Manager",
     "not_activated": "Non activé",
@@ -100,6 +102,8 @@
     "start_hour": "Heure de début",
     "start_hour_required": "L'heure de début est obligatoire",
     "date_picker_placeholder": "jj.mm.aaaa",
-    "time_picker_placeholder": "hh:mm"
+    "time_picker_placeholder": "hh:mm",
+    "add_calendar_event": "Ajouter un événement",
+    "edit_calendar_event": "Modifier cet événement"
   }
 }

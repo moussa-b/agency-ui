@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { CalendarOptions, DateSelectArg, EventInput, EventSourceFuncArg } from '@fullcalendar/core';
+import { CalendarOptions, DateSelectArg, EventClickArg, EventInput, EventSourceFuncArg } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
@@ -37,6 +37,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
       selectable: true,
       selectMirror: true,
       select: this.onDateSelect.bind(this),
+      eventClick: (eventClickArg: EventClickArg): void => this.onEventClick(eventClickArg),
       events: (arg: EventSourceFuncArg, successCallback: (eventInputs: EventInput[]) => void, failureCallback: (error: Error) => void) => {
         this.getEvents(arg.start, arg.end).subscribe((eventList: EventInput[]) => successCallback(eventList));
       },
@@ -65,17 +66,24 @@ export class CalendarComponent implements OnInit, OnDestroy {
   onDateSelect(dateSelectArg: DateSelectArg) {
     const calendarApi = dateSelectArg.view.calendar;
     calendarApi.unselect();
+    const calendarEvent: CalendarEvent = {
+      endDate: dateSelectArg.end.toISOString(),
+      startDate: dateSelectArg.start.toISOString(),
+      title: ''
+    };
     this.dialogService.open(CalendarEventFormComponent, {
-      header: this.translateService.instant('users.add_user'),
-      data: {start: dateSelectArg.start, end: dateSelectArg.end},
+      header: this.translateService.instant('calendar.add_calendar_event'),
+      data: {calendarEvent},
       closable: true,
       modal: true,
     }).onClose.subscribe((calendarEvent: CalendarEvent) => {
       if (calendarEvent) {
         calendarApi.addEvent({
+          id: `calendarEvent-${calendarEvent.id}`,
           title: calendarEvent.title,
           start: calendarEvent.startDate,
-          end: calendarEvent.endDate
+          end: calendarEvent.endDate,
+          extendedProps: {calendarEvent},
         });
         this.toasterService.emitValue({
           severity: 'success',
@@ -95,8 +103,28 @@ export class CalendarComponent implements OnInit, OnDestroy {
           start: calendarEvent.startDate,
           end: calendarEvent.endDate,
           extendedProps: {calendarEvent},
+          className: 'cursor-pointer'
         }
       });
     }));
+  }
+
+  private onEventClick(eventClickArg: EventClickArg) {
+    const calendarEvent: CalendarEvent = eventClickArg.event.extendedProps['calendarEvent'];
+    this.dialogService.open(CalendarEventFormComponent, {
+      header: this.translateService.instant('calendar.edit_calendar_event'),
+      data: {calendarEvent},
+      closable: true,
+      modal: true,
+    }).onClose.subscribe((calendarEvent: CalendarEvent) => {
+      if (calendarEvent) {
+        this.toasterService.emitValue({
+          severity: 'success',
+          summary: this.translateService.instant('common.success'),
+          detail: this.translateService.instant('common.success_message')
+        });
+        eventClickArg.view.calendar.refetchEvents();
+      }
+    });
   }
 }

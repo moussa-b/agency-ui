@@ -35,7 +35,8 @@
   "clients": {
     "clients": "Clients",
     "client_list": "List of clients",
-    "add_client": "Add a client"
+    "add_client": "Add a client",
+    "edit_client": "Edit client"
   },
   "header": {
     "change_language": "Change language",
@@ -48,6 +49,7 @@
   "users": {
     "activated": "Activated",
     "add_user": "Add a user",
+    "edit_user": "Edit user",
     "administrator": "Administrator",
     "manager": "Manager",
     "not_activated": "Not activated",
@@ -100,6 +102,8 @@
     "start_hour": "Start hour",
     "start_hour_required": "Start hour is required",
     "date_picker_placeholder": "dd.mm.yyyy",
-    "time_picker_placeholder": "hh:mm"
+    "time_picker_placeholder": "hh:mm",
+    "add_calendar_event": "Add calendar event",
+    "edit_calendar_event": "Edit calendar event"
   }
 }

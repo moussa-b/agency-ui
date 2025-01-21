@@ -75,7 +75,7 @@ export class ClientListComponent implements OnInit {
   editClient(client: Client) {
     this.dialogService.open(ClientFormComponent, {
       data: {client: client},
-      header: this.translateService.instant('clients.add_client'),
+      header: this.translateService.instant('clients.edit_client'),
       closable: true,
       modal: true,
     }).onClose.subscribe((client: Client) => {

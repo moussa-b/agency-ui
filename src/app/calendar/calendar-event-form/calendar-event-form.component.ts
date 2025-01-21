@@ -28,15 +28,21 @@ export class CalendarEventFormComponent {
               private dialogConfig: DynamicDialogConfig) {}
 
   ngOnInit() {
-    const calendarEvent: CalendarEvent | undefined = this.dialogConfig.data?.calendarEvent;
+    const calendarEvent: CalendarEvent = this.dialogConfig.data.calendarEvent;
+    const startDate = new Date(calendarEvent.startDate);
+    const endDate = new Date(calendarEvent.endDate);
+    const formattedStartDate = `${String(startDate.getDate()).padStart(2, '0')}.${String(startDate.getMonth() + 1).padStart(2, '0')}.${startDate.getFullYear()}`;
+    const formattedStartHour = `${String(startDate.getHours()).padStart(2, '0')}:${String(startDate.getMinutes()).padStart(2, '0')}`;
+    const formattedEndDate = `${String(endDate.getDate()).padStart(2, '0')}.${String(endDate.getMonth() + 1).padStart(2, '0')}.${endDate.getFullYear()}`;
+    const formattedEndHour = `${String(endDate.getHours()).padStart(2, '0')}:${String(endDate.getMinutes()).padStart(2, '0')}`;
     this.eventForm = this.fb.group({
-      id: [calendarEvent?.id],
-      title: ['', Validators.required],
-      description: [''],
-      startDate: ['', Validators.required],
-      startHour: ['', Validators.required],
-      endDate: ['', Validators.required],
-      endHour: ['', Validators.required]
+      id: [calendarEvent.id],
+      title: [calendarEvent.title, Validators.required],
+      description: [calendarEvent.description],
+      startDate: [formattedStartDate, Validators.required],
+      startHour: [formattedStartHour, Validators.required],
+      endDate: [formattedEndDate, Validators.required],
+      endHour: [formattedEndHour, Validators.required]
     });
     this.config = {
       plugins: [

@@ -77,7 +77,7 @@ export class UserListComponent implements OnInit {
   editUser(user: User) {
     this.dialogService.open(UserFormComponent, {
       data: {user: user},
-      header: this.translateService.instant('users.add_user'),
+      header: this.translateService.instant('users.edit_user'),
       closable: true,
       modal: true,
     }).onClose.subscribe((user: User) => {
