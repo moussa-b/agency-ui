@@ -1,6 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { CalendarOptions, DateSelectArg, EventClickArg, EventInput, EventSourceFuncArg } from '@fullcalendar/core';
+import {
+  CalendarOptions,
+  DateSelectArg,
+  EventChangeArg,
+  EventClickArg,
+  EventInput,
+  EventSourceFuncArg
+} from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
@@ -11,6 +18,7 @@ import { ToasterService } from '../../core/services/toaster.service';
 import { CalendarEventFormComponent } from '../calendar-event-form/calendar-event-form.component';
 import { CalendarEvent } from '../entity/calendar-event.entity';
 import { CalendarService } from '../calendar.service';
+import { SaveCalendarEventDto } from '../dto/save-calendar-event.dto';
 
 @Component({
   selector: 'app-calendar',
@@ -37,11 +45,13 @@ export class CalendarComponent implements OnInit, OnDestroy {
       selectable: true,
       selectMirror: true,
       select: this.onDateSelect.bind(this),
+      eventChange: (eventChangeArg: EventChangeArg): void => this.onEventChange(eventChangeArg),
       eventClick: (eventClickArg: EventClickArg): void => this.onEventClick(eventClickArg),
       events: (arg: EventSourceFuncArg, successCallback: (eventInputs: EventInput[]) => void, failureCallback: (error: Error) => void) => {
         this.getEvents(arg.start, arg.end).subscribe((eventList: EventInput[]) => successCallback(eventList));
       },
       nowIndicator: true,
+      editable: true,
       locales: [frLocale],
       locale: this.translateService.currentLang,
       headerToolbar: {left: 'prev,next today', center: 'title', right: 'timeGridWeek,timeGridDay'},
@@ -78,13 +88,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
       modal: true,
     }).onClose.subscribe((calendarEvent: CalendarEvent) => {
       if (calendarEvent) {
-        calendarApi.addEvent({
-          id: `calendarEvent-${calendarEvent.id}`,
-          title: calendarEvent.title,
-          start: calendarEvent.startDate,
-          end: calendarEvent.endDate,
-          extendedProps: {calendarEvent},
-        });
+        calendarApi.addEvent(this.convertCalendarEventToEventInput(calendarEvent));
         this.toasterService.emitValue({
           severity: 'success',
           summary: this.translateService.instant('common.success'),
@@ -97,16 +101,20 @@ export class CalendarComponent implements OnInit, OnDestroy {
   private getEvents(startDate: Date, endDate: Date): Observable<EventInput[]> {
     return this.calendarService.findAll(startDate, endDate).pipe(map((calendarEvents: CalendarEvent[]) => {
       return calendarEvents.map((calendarEvent: CalendarEvent) => {
-        return {
-          id: `calendarEvent-${calendarEvent.id}`,
-          title: calendarEvent.title,
-          start: calendarEvent.startDate,
-          end: calendarEvent.endDate,
-          extendedProps: {calendarEvent},
-          className: 'cursor-pointer'
-        }
+        return this.convertCalendarEventToEventInput(calendarEvent)
       });
     }));
+  }
+
+  private convertCalendarEventToEventInput(calendarEvent: CalendarEvent): EventInput {
+    return {
+      id: `calendarEvent-${calendarEvent.id}`,
+      title: calendarEvent.title,
+      start: calendarEvent.startDate,
+      end: calendarEvent.endDate,
+      extendedProps: {calendarEvent},
+      className: 'cursor-pointer'
+    };
   }
 
   private onEventClick(eventClickArg: EventClickArg) {
@@ -124,6 +132,34 @@ export class CalendarComponent implements OnInit, OnDestroy {
           detail: this.translateService.instant('common.success_message')
         });
         eventClickArg.view.calendar.refetchEvents();
+      }
+    });
+  }
+
+  private onEventChange(eventChangeArg: EventChangeArg) {
+    const calendarEvent: CalendarEvent = eventChangeArg.event.extendedProps['calendarEvent'];
+    const startDate: Date = eventChangeArg.event.start!;
+    const endDate: Date = eventChangeArg.event.end!;
+    const formattedStartDate = `${String(startDate.getDate()).padStart(2, '0')}.${String(startDate.getMonth() + 1).padStart(2, '0')}.${startDate.getFullYear()}`;
+    const formattedStartHour = `${String(startDate.getHours()).padStart(2, '0')}:${String(startDate.getMinutes()).padStart(2, '0')}`;
+    const formattedEndDate = `${String(endDate.getDate()).padStart(2, '0')}.${String(endDate.getMonth() + 1).padStart(2, '0')}.${endDate.getFullYear()}`;
+    const formattedEndHour = `${String(endDate.getHours()).padStart(2, '0')}:${String(endDate.getMinutes()).padStart(2, '0')}`;
+    const updateDto: SaveCalendarEventDto = {
+      ...calendarEvent,
+      startDate: formattedStartDate,
+      startHour: formattedStartHour,
+      endDate: formattedEndDate,
+      endHour: formattedEndHour,
+    }
+    this.calendarService.update(calendarEvent.id!, updateDto).subscribe((updatedCalendarEvent: CalendarEvent) => {
+      if (updatedCalendarEvent) {
+        this.toasterService.emitValue({
+          severity: 'success',
+          summary: this.translateService.instant('common.success'),
+          detail: this.translateService.instant('common.success_message')
+        });
+      } else {
+        eventChangeArg.revert();
       }
     });
   }
