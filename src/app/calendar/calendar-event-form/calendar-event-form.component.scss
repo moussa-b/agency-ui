@@ -13,4 +13,10 @@ app-calendar-event-form {
   .ck-editor__editable_inline {
     min-height: 200px;
   }
+
+  .ck-editor__main {
+    ul, ol {
+      padding-left: 20px;
+    }
+  }
 }

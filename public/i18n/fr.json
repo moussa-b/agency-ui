@@ -83,9 +83,23 @@
     "actions": "Actions",
     "phoneNumber": "Numéro de téléphone",
     "address": "Adresse",
-    "error": "Erreur"
+    "error": "Erreur",
+    "optional": "Facultatif"
   },
   "calendar": {
-    "calendar": "Agenda"
+    "calendar": "Agenda",
+    "title": "Titre",
+    "title_required": "Le titre est obligatoire",
+    "description": "Description",
+    "end_date": "Date de fin",
+    "end_date_required": "La date de fin est obligatoire",
+    "end_hour": "Heure de fin",
+    "end_hour_required": "L'heure de fin est obligatoire",
+    "start_date": "Date de début",
+    "start_date_required": "La date de début est obligatoire",
+    "start_hour": "Heure de début",
+    "start_hour_required": "L'heure de début est obligatoire",
+    "date_picker_placeholder": "jj.mm.aaaa",
+    "time_picker_placeholder": "hh:mm"
   }
 }

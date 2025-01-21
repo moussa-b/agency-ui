@@ -1,8 +1,10 @@
 export interface SaveCalendarEventDto {
   title: string;
   description?: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
+  startHour: string;
+  endHour: string;
   status?: CalendarEventStatus;
   reminder?: number;
   recurring?: boolean;
