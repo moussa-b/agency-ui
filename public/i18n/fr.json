@@ -36,7 +36,8 @@
     "clients": "Clients",
     "client_list": "Liste des clients",
     "add_client": "Ajouter un client",
-    "edit_client": "Modifier ce client"
+    "edit_client": "Modifier ce client",
+    "delete_client_confirmation_message": "Êtes-vous sûr de vouloir supprimer ce client ?"
   },
   "header": {
     "change_language": "Changer de langue",

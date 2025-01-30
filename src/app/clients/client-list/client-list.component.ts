@@ -12,7 +12,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { Client } from '../entities/client.entity';
 import { ClientsService } from '../clients.service';
 import { ClientFormComponent } from '../client-form/client-form.component';
-import { ConfirmPopup } from 'primeng/confirmpopup';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToasterService } from '../../core/services/toaster.service';
 
 @Component({
@@ -26,7 +26,7 @@ import { ToasterService } from '../../core/services/toaster.service';
     PrimeTemplate,
     TableModule,
     TranslatePipe,
-    ConfirmPopup,
+    ConfirmPopupModule,
   ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss',
