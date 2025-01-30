@@ -40,8 +40,6 @@
   },
   "header": {
     "change_language": "Change language",
-    "french": "French",
-    "english" : "English",
     "profile": "Profile",
     "my_account": "My account",
     "logout": "Log out"
@@ -86,7 +84,11 @@
     "phoneNumber": "Phone number",
     "address": "Address",
     "error": "Error",
-    "optional": "Optional"
+    "optional": "Optional",
+    "french": "French",
+    "english": "English",
+    "preferred_language": "Preferred communication language",
+    "select": "Select"
   },
   "calendar": {
     "calendar": "Calendar",

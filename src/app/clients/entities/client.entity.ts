@@ -8,6 +8,7 @@ export interface Client {
   email: string;
   phone: string;
   sex?: Sex;
+  preferredLanguage?: string;
   address?: string;
   createdAt: Date;
   updatedAt: Date;

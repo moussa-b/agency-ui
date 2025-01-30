@@ -1,7 +1,11 @@
+import { Sex } from '../../core/models/sex.enum';
+
 export class SaveUserDto {
-  username?: string;
   email!: string;
-  password?: string;
   firstName!: string;
   lastName!: string;
+  password?: string;
+  preferredLanguage?: string;
+  sex?: Sex;
+  username?: string;
 }

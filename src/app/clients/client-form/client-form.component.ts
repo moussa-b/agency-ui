@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ClientsService } from '../clients.service';
 import { Client } from '../entities/client.entity';
 import { Textarea } from 'primeng/textarea';
+import { Select } from 'primeng/select';
 
 @Component({
   selector: 'app-client-form',
@@ -21,7 +22,8 @@ import { Textarea } from 'primeng/textarea';
     ReactiveFormsModule,
     SelectButton,
     TranslatePipe,
-    Textarea
+    Textarea,
+    Select
   ],
   templateUrl: './client-form.component.html',
   styleUrl: './client-form.component.scss'
@@ -29,6 +31,7 @@ import { Textarea } from 'primeng/textarea';
 export class ClientFormComponent implements OnInit {
   clientForm!: FormGroup;
   sexOptions!: SelectItem<Sex>[];
+  preferredLanguageOptions!: SelectItem<string>[];
 
   constructor(private fb: FormBuilder,
               private translateService: TranslateService,
@@ -45,11 +48,16 @@ export class ClientFormComponent implements OnInit {
       email: [client?.email, [Validators.required, Validators.email]],
       phone: [client?.phone],
       sex: [client?.sex || Sex.MALE],
+      preferredLanguage: [client ? client.preferredLanguage : 'fr'],
       address: [client?.address],
     });
     this.sexOptions= [
       { label: this.translateService.instant('common.man'), value: Sex.MALE },
       { label: this.translateService.instant('common.woman'), value: Sex.FEMALE },
+    ];
+    this.preferredLanguageOptions= [
+      { label: this.translateService.instant('common.french'), value: 'fr' },
+      { label: this.translateService.instant('common.english'), value: 'en' },
     ];
   }
 

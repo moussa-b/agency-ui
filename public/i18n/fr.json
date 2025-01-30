@@ -40,8 +40,6 @@
   },
   "header": {
     "change_language": "Changer de langue",
-    "french": "Français",
-    "english": "Anglais",
     "profile": "Profil",
     "my_account": "Mon compte",
     "logout": "Déconnexion"
@@ -86,7 +84,11 @@
     "phoneNumber": "Numéro de téléphone",
     "address": "Adresse",
     "error": "Erreur",
-    "optional": "Facultatif"
+    "optional": "Facultatif",
+    "french": "Français",
+    "english": "Anglais",
+    "preferred_language": "Langue de communication préférée",
+    "select": "Sélectionner"
   },
   "calendar": {
     "calendar": "Agenda",

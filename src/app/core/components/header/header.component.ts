@@ -40,12 +40,12 @@ export class HeaderComponent implements OnInit {
         label: this.translateService.instant('header.change_language'),
         items: [
           {
-            label: this.translateService.instant('header.french'),
+            label: this.translateService.instant('common.french'),
             icon: 'pi pi-flag',
             command: () => this.changeLanguage('fr')
           },
           {
-            label: this.translateService.instant('header.english'),
+            label: this.translateService.instant('common.english'),
             icon: 'pi pi-flag',
             command: () => this.changeLanguage('en')
           }

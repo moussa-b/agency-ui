@@ -31,6 +31,7 @@ export class UserFormComponent implements OnInit {
   userForm!: FormGroup;
   roleOptions!: SelectItem<UserRole>[];
   sexOptions!: SelectItem<Sex>[];
+  preferredLanguageOptions!: SelectItem<string>[];
 
   constructor(private fb: FormBuilder,
               private translateService: TranslateService,
@@ -45,6 +46,7 @@ export class UserFormComponent implements OnInit {
       lastName: [user?.lastName, Validators.required],
       firstName: [user?.firstName, Validators.required],
       sex: [user?.sex || Sex.MALE],
+      preferredLanguage: [user ? user.preferredLanguage : 'fr'],
       email: [user?.email, [Validators.required, Validators.email]],
       role: [user?.role || UserRole.USER],
     });
@@ -56,6 +58,10 @@ export class UserFormComponent implements OnInit {
     this.sexOptions= [
       { label: this.translateService.instant('common.man'), value: Sex.MALE },
       { label: this.translateService.instant('common.woman'), value: Sex.FEMALE },
+    ];
+    this.preferredLanguageOptions= [
+      { label: this.translateService.instant('common.french'), value: 'fr' },
+      { label: this.translateService.instant('common.english'), value: 'en' },
     ];
   }
 

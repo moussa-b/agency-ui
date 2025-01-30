@@ -9,6 +9,7 @@ export class User {
   firstName!: string;
   lastName!: string;
   sex?: Sex;
+  preferredLanguage?: string;
   role!: UserRole;
   isActive?: boolean;
   activationToken?: string;
